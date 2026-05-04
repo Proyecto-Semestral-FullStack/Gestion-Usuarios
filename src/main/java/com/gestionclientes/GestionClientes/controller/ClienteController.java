@@ -41,4 +41,13 @@ public class ClienteController{
     public ResponseEntity<ClienteResponseDTO> actualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto){
         return clienteService.actualizar(id,dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("id/{id}")
+    public ResponseEntity<Void> borrarPorId(@PathVariable Long id){
+        if(clienteService.obtenerPorId(id).isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        clienteService.eliminarPorId(id);
+        return ResponseEntity.noContent().build();
+    }
 }
