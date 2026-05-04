@@ -39,6 +39,10 @@ public class ClienteService{
         return clienteRepository.findByNombreContainingIgnoreCase(nombre).map(this::mapToDto);
     }
 
+    public Optional<ClienteResponseDTO> obtenerPorCorreo(String correo){
+        return clienteRepository.findByCorreo(correo).map(this::mapToDto);
+    }
+
     public ClienteResponseDTO guardar(ClienteRequestDTO dto){
         Cliente cliente = new Cliente(
                 null,
