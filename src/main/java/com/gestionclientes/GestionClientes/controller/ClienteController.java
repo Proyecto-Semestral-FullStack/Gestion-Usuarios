@@ -22,13 +22,13 @@ public class ClienteController{
         return ResponseEntity.ok(clienteService.obtenerTodos());
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<ClienteResponseDTO> obtenerPorId(@RequestParam(name = "id",required = true) Long id){
+    @GetMapping("id/{id}")
+    public ResponseEntity<ClienteResponseDTO> obtenerPorId(@PathVariable Long id){
         return clienteService.obtenerPorId(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("{nombre}")
-    public ResponseEntity<ClienteResponseDTO> obtenerPorId(@RequestParam(name = "nombre",required = true) String nombre){
+    @GetMapping("nombre/{nombre}")
+    public ResponseEntity<ClienteResponseDTO> obtenerPorNombre(@PathVariable String nombre){
         return clienteService.obtenerPorNombre(nombre).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
@@ -37,8 +37,8 @@ public class ClienteController{
         return ResponseEntity.status(201).body(clienteService.guardar(dto));
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<ClienteResponseDTO> actualizar(@RequestParam(name = "id",required = true) Long id, @Valid @RequestBody ClienteRequestDTO dto){
+    @PutMapping("id/{id}")
+    public ResponseEntity<ClienteResponseDTO> actualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto){
         return clienteService.actualizar(id,dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }
