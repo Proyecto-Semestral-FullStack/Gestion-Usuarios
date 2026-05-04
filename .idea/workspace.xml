@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c785efd7-72dc-48f0-a320-1b2040d2215e" name="Changes" comment="metodo actualizar agregado en el Controlador">
+    <list default="true" id="c785efd7-72dc-48f0-a320-1b2040d2215e" name="Changes" comment="metodo de eliminar usuario por Id creado en el Controlador">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/controller/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/repository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/repository/ClienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/ClienteService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +80,7 @@
       <workItem from="1777916115150" duration="27000" />
       <workItem from="1777916155050" duration="484000" />
       <workItem from="1777916655854" duration="669000" />
-      <workItem from="1777917349675" duration="1018000" />
+      <workItem from="1777917349675" duration="1844000" />
     </task>
     <task id="LOCAL-00001" summary="metodo actualizar agregado en el Controlador">
       <option name="closed" value="true" />
@@ -96,7 +98,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777917941599</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modificacion en los metodos de obtenerPorId, obtenerPorNombre y actualizar">
+      <option name="closed" value="true" />
+      <created>1777918474598</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777918474598</updated>
+    </task>
+    <task id="LOCAL-00004" summary="metodo de eliminar usuario por Id creado en el Controlador">
+      <option name="closed" value="true" />
+      <created>1777918776806</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777918776806</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +122,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="metodo actualizar agregado en el Controlador" />
-    <option name="LAST_COMMIT_MESSAGE" value="metodo actualizar agregado en el Controlador" />
+    <MESSAGE value="modificacion en los metodos de obtenerPorId, obtenerPorNombre y actualizar" />
+    <MESSAGE value="metodo de eliminar usuario por Id creado en el Controlador" />
+    <option name="LAST_COMMIT_MESSAGE" value="metodo de eliminar usuario por Id creado en el Controlador" />
   </component>
 </project>

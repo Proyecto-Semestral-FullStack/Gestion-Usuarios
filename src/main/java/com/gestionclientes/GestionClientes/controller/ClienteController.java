@@ -50,4 +50,13 @@ public class ClienteController{
         clienteService.eliminarPorId(id);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("id/{id}")
+    public ResponseEntity<Void> borrarPorCorreo(@PathVariable String correo){
+        if(clienteService.obtenerPorCorreo(correo).isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        clienteService.eliminarPorCorreo(correo);
+        return ResponseEntity.noContent().build();
+    }
 }
