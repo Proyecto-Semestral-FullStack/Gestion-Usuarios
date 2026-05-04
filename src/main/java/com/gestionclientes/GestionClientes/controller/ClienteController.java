@@ -31,8 +31,14 @@ public class ClienteController{
     public ResponseEntity<ClienteResponseDTO> obtenerPorId(@RequestParam(name = "nombre",required = true) String nombre){
         return clienteService.obtenerPorNombre(nombre).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
     @PostMapping
     public ResponseEntity<ClienteResponseDTO> crear(@Valid @RequestBody ClienteRequestDTO dto){
         return ResponseEntity.status(201).body(clienteService.guardar(dto));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ClienteResponseDTO> actualizar(@RequestParam(name = "id",required = true) Long id, @Valid @RequestBody ClienteRequestDTO dto){
+        return clienteService.actualizar(id,dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }
