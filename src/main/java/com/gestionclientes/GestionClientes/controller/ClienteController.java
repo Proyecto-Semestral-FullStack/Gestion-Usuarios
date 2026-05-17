@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/api/v1/usuarios")
 @RequiredArgsConstructor
 public class ClienteController{
 
@@ -51,7 +51,7 @@ public class ClienteController{
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("id/{id}")
+    @DeleteMapping("correo/{correo}")
     public ResponseEntity<Void> borrarPorCorreo(@PathVariable String correo){
         if(clienteService.obtenerPorCorreo(correo).isEmpty()){
             return ResponseEntity.notFound().build();
