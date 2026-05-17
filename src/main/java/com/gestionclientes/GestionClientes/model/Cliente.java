@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -38,9 +41,11 @@ public class Cliente{
     @Column
     private Long imagenId;
 
+    @CreatedDate
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
 
+    @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime fechaActualizacion;
 
