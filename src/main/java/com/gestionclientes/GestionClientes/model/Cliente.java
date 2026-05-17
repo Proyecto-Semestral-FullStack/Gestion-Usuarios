@@ -36,7 +36,7 @@ public class Cliente{
     private Boolean activo;
 
     @Column
-    private Long imagen_id;
+    private Long imagenId;
 
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
