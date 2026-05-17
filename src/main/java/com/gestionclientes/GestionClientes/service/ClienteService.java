@@ -23,9 +23,14 @@ public class ClienteService{
         return new ClienteResponseDTO(
                 cliente.getId(),
                 cliente.getNombre(),
+                cliente.getApellido(),
                 cliente.getCorreo(),
+                "*".repeat(cliente.getContrasena().length()),
                 cliente.getRol(),
-                "*".repeat(cliente.getContrasena().length())
+                cliente.getActivo(),
+                cliente.getImagenId(),
+                cliente.getFechaCreacion(),
+                cliente.getFechaActualizacion()
         );
     }
 
@@ -49,9 +54,14 @@ public class ClienteService{
         Cliente cliente = new Cliente(
                 null,
                 dto.getNombre(),
+                dto.getApellido(),
                 dto.getCorreo(),
+                dto.getContrasena(),
                 dto.getRol(),
-                dto.getContrasena()
+                dto.getActivo(),
+                dto.getImagenId(),
+                null,
+                null
         );
         return mapToDto(clienteRepository.save(cliente));
     }
@@ -63,8 +73,14 @@ public class ClienteService{
                     .orElseThrow(() -> new RuntimeException(
                             "Categoría NO encontrada con id: " + dto.getId()));
             existe.setNombre(dto.getNombre());
+            existe.setApellido(dto.getApellido());
             existe.setCorreo(dto.getCorreo());
             existe.setContrasena(dto.getContrasena());
+            existe.setRol(dto.getRol());
+            existe.setActivo(dto.getActivo());
+            existe.setImagenId(dto.getImagenId());
+            existe.setFechaCreacion(dto.getFechaCreacion());
+            existe.setFechaActualizacion(dto.getFechaActualizacion());
             return mapToDto(clienteRepository.save(existe));
         });
     }
@@ -78,4 +94,3 @@ public class ClienteService{
     }
 
 }
-
