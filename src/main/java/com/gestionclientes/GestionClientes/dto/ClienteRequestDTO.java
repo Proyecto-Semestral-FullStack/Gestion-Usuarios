@@ -33,7 +33,7 @@ public class ClienteRequestDTO {
     @NotNull(message = "La actividad no puede estar nula")
     private Boolean activo;
 
-    private Long imagen_id;
+    private Long imagenId;
 
     @NotNull(message = "La fecha de creacion no debe ser nula")
     private LocalDateTime fechaCreacion;
