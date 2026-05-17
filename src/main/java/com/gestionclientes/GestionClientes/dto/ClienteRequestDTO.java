@@ -1,9 +1,12 @@
 package com.gestionclientes.GestionClientes.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -16,12 +19,25 @@ public class ClienteRequestDTO {
     @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
 
+    private String apellido;
+
     @NotBlank(message = "El correo no puede estar en blanco")
     private String correo;
 
-    @NotBlank(message = "El correo no puede estar en blanco")
-    private String rol;
-
     @NotBlank(message = "La contrasena no puede estar vacia")
     private String contrasena;
+
+    @NotNull(message = "El rol no puede estar nulo")
+    private Long rol;
+
+    @NotNull(message = "La actividad no puede estar nula")
+    private Boolean activo;
+
+    private Long imagen_id;
+
+    @NotNull(message = "La fecha de creacion no debe ser nula")
+    private LocalDateTime fechaCreacion;
+
+    @NotNull(message = "La fecha de actualizacion no debe ser nula")
+    private LocalDateTime fechaActualizacion;
 }
