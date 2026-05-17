@@ -4,6 +4,7 @@ import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
 import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
 import com.gestionclientes.GestionClientes.model.Cliente;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ClienteService{
     private final ClienteRepository clienteRepository;
