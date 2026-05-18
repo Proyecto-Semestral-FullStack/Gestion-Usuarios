@@ -23,6 +23,8 @@ public class ClienteService{
     private final ClienteRepository clienteRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    private final JwtService jwtService;
+
     public ClienteResponseDTO mapToDto(Cliente cliente){
         return new ClienteResponseDTO(
                 cliente.getId(),
@@ -89,12 +91,22 @@ public class ClienteService{
         return mapToDto(clienteRepository.save(cliente));
     }
 
-    public LoginResponseDTO login(LoginRequestDTO dto){
+    /**public LoginResponseDTO login(LoginRequestDTO dto){
         Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         if(!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())){
             throw new RuntimeException("Contraseña incorrecta");
         }
         return new LoginResponseDTO("Inicio de sesión exitoso");
+    }  **/
+
+    public LoginResponseDTO login(LoginRequestDTO dto) {
+        Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        if (!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())) {
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+        String token = jwtService.generarToken(cliente.getId(), cliente.getCorreo(), cliente.getRol().toString());
+        return new LoginResponseDTO(token, "Inicio de sesión exitoso");
     }
 
     public void eliminarPorId(Long id) {

@@ -28,7 +28,7 @@ public class Cliente{
     @Column(nullable = false, length = 150, unique = true)
     private String correo;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 255)
     private String contrasena;
 
     @Column(nullable = false)
