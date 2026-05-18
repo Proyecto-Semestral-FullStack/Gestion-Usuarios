@@ -16,3 +16,4 @@ public class LoginRequestDTO{
     @NotBlank(message = "La contrasena no puede estar en blanco")
     private String contrasena;
 }
+
