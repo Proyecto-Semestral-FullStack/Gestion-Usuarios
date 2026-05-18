@@ -2,10 +2,13 @@ package com.gestionclientes.GestionClientes.service;
 
 import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
 import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
+import com.gestionclientes.GestionClientes.dto.LoginRequestDTO;
+import com.gestionclientes.GestionClientes.dto.LoginResponseDTO;
 import com.gestionclientes.GestionClientes.model.Cliente;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ClienteService{
     private final ClienteRepository clienteRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public ClienteResponseDTO mapToDto(Cliente cliente){
         return new ClienteResponseDTO(
@@ -25,7 +29,6 @@ public class ClienteService{
                 cliente.getNombre(),
                 cliente.getApellido(),
                 cliente.getCorreo(),
-                "*".repeat(cliente.getContrasena().length()),
                 cliente.getRol(),
                 cliente.getActivo(),
                 cliente.getImagenId(),
@@ -50,22 +53,6 @@ public class ClienteService{
         return clienteRepository.findByCorreo(correo).map(this::mapToDto);
     }
 
-    public ClienteResponseDTO guardar(ClienteRequestDTO dto){
-        Cliente cliente = new Cliente(
-                null,
-                dto.getNombre(),
-                dto.getApellido(),
-                dto.getCorreo(),
-                dto.getContrasena(),
-                dto.getRol(),
-                dto.getActivo(),
-                dto.getImagenId(),
-                null,
-                null
-        );
-        return mapToDto(clienteRepository.save(cliente));
-    }
-
     public Optional<ClienteResponseDTO> actualizar(Long id, ClienteRequestDTO dto) {
         return clienteRepository.findById(id).map(existe -> {
             Cliente cliente = clienteRepository
@@ -75,12 +62,39 @@ public class ClienteService{
             existe.setNombre(dto.getNombre());
             existe.setApellido(dto.getApellido());
             existe.setCorreo(dto.getCorreo());
-            existe.setContrasena(dto.getContrasena());
+            existe.setContrasena(passwordEncoder.encode(dto.getContrasena()));
             existe.setRol(dto.getRol());
             existe.setActivo(dto.getActivo());
             existe.setImagenId(dto.getImagenId());
             return mapToDto(clienteRepository.save(existe));
         });
+    }
+
+    public ClienteResponseDTO guardar(ClienteRequestDTO dto){
+        if(clienteRepository.findByCorreo(dto.getCorreo()).isPresent()){
+            throw new RuntimeException("El usuario ya está registrado");
+        }
+        Cliente cliente = new Cliente(
+                null,
+                dto.getNombre(),
+                dto.getApellido(),
+                dto.getCorreo(),
+                passwordEncoder.encode(dto.getContrasena()),
+                dto.getRol(),
+                dto.getActivo(),
+                dto.getImagenId(),
+                null,
+                null
+        );
+        return mapToDto(clienteRepository.save(cliente));
+    }
+
+    public LoginResponseDTO login(LoginRequestDTO dto){
+        Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        if(!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())){
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+        return new LoginResponseDTO("Inicio de sesión exitoso");
     }
 
     public void eliminarPorId(Long id) {
