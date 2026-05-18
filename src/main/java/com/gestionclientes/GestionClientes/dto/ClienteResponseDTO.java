@@ -14,7 +14,6 @@ public class ClienteResponseDTO {
     private String nombre;
     private String apellido;
     private String correo;
-    private String contrasena;
     private Long rol;
     private Boolean activo;
     private Long imagenId;
