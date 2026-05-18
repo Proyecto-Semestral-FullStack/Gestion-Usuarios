@@ -35,9 +35,7 @@ public class ClienteRequestDTO {
 
     private Long imagenId;
 
-    @NotNull(message = "La fecha de creacion no debe ser nula")
     private LocalDateTime fechaCreacion;
 
-    @NotNull(message = "La fecha de actualizacion no debe ser nula")
     private LocalDateTime fechaActualizacion;
 }
