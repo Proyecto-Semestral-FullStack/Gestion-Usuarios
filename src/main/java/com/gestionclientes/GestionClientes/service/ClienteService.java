@@ -79,8 +79,6 @@ public class ClienteService{
             existe.setRol(dto.getRol());
             existe.setActivo(dto.getActivo());
             existe.setImagenId(dto.getImagenId());
-            existe.setFechaCreacion(dto.getFechaCreacion());
-            existe.setFechaActualizacion(dto.getFechaActualizacion());
             return mapToDto(clienteRepository.save(existe));
         });
     }
