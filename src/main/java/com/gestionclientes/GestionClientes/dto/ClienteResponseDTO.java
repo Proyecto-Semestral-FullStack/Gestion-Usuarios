@@ -1,5 +1,6 @@
 package com.gestionclientes.GestionClientes.dto;
 
+import com.gestionclientes.GestionClientes.model.Rol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ public class ClienteResponseDTO {
     private String nombre;
     private String apellido;
     private String correo;
-    private Long rol;
+    private Rol rol;
     private Boolean activo;
     private Long imagenId;
     private LocalDateTime fechaCreacion;

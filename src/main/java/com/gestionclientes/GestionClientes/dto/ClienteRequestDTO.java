@@ -1,5 +1,6 @@
 package com.gestionclientes.GestionClientes.dto;
 
+import com.gestionclientes.GestionClientes.model.Rol;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ public class ClienteRequestDTO {
     private String contrasena;
 
     @NotNull(message = "El rol no puede estar nulo")
-    private Long rol;
+    private Rol rol;
 
     @NotNull(message = "La actividad no puede estar nula")
     private Boolean activo;
