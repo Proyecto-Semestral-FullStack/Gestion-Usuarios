@@ -1,6 +1,7 @@
 package com.gestionclientes.GestionClientes.config;
 
 import com.gestionclientes.GestionClientes.model.Cliente;
+import com.gestionclientes.GestionClientes.model.Rol;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +26,8 @@ public class DataInitializer implements CommandLineRunner{
         }
         LocalDateTime ahora = LocalDateTime.now();
         log.info(">>>DataInitializer: BD vacía detectada, insertando datos de prueba...");
-        clienteRepository.save(new Cliente(null,"Javier","Rodriguez","javiR@gmail.com",passwordEncoder.encode("Jav2000"),1L,true,null,ahora,ahora));
-        clienteRepository.save(new Cliente(null,"Sopaipilla69",null,"sop69@gmail.com",passwordEncoder.encode("S6opaipill9a"),2L,true,null,ahora,ahora));
+        clienteRepository.save(new Cliente(null,"Javier","Rodriguez","javiR@gmail.com",passwordEncoder.encode("Jav2000"), Rol.ADMIN,true,null,ahora,ahora));
+        clienteRepository.save(new Cliente(null,"Sopaipilla69",null,"sop69@gmail.com",passwordEncoder.encode("S6opaipill9a"),Rol.USUARIO,true,null,ahora,ahora));
         log.info(">>> DataInitializer: usuarios insertados correctamente",clienteRepository.count());
     }
 }
