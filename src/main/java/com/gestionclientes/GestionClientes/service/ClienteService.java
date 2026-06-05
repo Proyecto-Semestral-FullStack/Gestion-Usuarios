@@ -57,10 +57,7 @@ public class ClienteService{
 
     public Optional<ClienteResponseDTO> actualizar(Long id, ClienteRequestDTO dto) {
         return clienteRepository.findById(id).map(existe -> {
-            Cliente cliente = clienteRepository
-                    .findById(dto.getId())
-                    .orElseThrow(() -> new RuntimeException(
-                            "Categoría NO encontrada con id: " + dto.getId()));
+
             existe.setNombre(dto.getNombre());
             existe.setApellido(dto.getApellido());
             existe.setCorreo(dto.getCorreo());
@@ -90,14 +87,6 @@ public class ClienteService{
         );
         return mapToDto(clienteRepository.save(cliente));
     }
-
-    /**public LoginResponseDTO login(LoginRequestDTO dto){
-        Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        if(!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())){
-            throw new RuntimeException("Contraseña incorrecta");
-        }
-        return new LoginResponseDTO("Inicio de sesión exitoso");
-    }  **/
 
     public LoginResponseDTO login(LoginRequestDTO dto) {
         Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo())

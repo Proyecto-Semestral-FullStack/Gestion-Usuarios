@@ -25,7 +25,7 @@ public class SecurityFilter {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/usuarios/login").permitAll() // permite logearse
-                        .requestMatchers("/api/usuarios/**").permitAll()  // permite crear usuario (registro)
+                        .requestMatchers("/api/usuarios").permitAll()  // permite crear usuario (registro)
                         .anyRequest().authenticated()
                 )
                // .httpBasic(Customizer.withDefaults());
