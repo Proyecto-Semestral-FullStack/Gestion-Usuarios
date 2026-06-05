@@ -31,8 +31,9 @@ public class Cliente{
     @Column(nullable = false, length = 255)
     private String contrasena;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Long rol;
+    private Rol rol;
 
     @Column(nullable = false)
     private Boolean activo;
