@@ -4,6 +4,9 @@ import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
 import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
 import com.gestionclientes.GestionClientes.dto.LoginRequestDTO;
 import com.gestionclientes.GestionClientes.dto.LoginResponseDTO;
+import com.gestionclientes.GestionClientes.exception.CreadencialesInvalidasException;
+import com.gestionclientes.GestionClientes.exception.UsuarioNoEncontradoException;
+import com.gestionclientes.GestionClientes.exception.UsuarioYaExisteException;
 import com.gestionclientes.GestionClientes.model.Cliente;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
@@ -74,7 +77,7 @@ public class ClienteService{
 
     public ClienteResponseDTO guardar(ClienteRequestDTO dto){
         if(clienteRepository.findByCorreo(dto.getCorreo()).isPresent()){
-            throw new RuntimeException("El usuario ya está registrado");
+            throw new UsuarioYaExisteException("El usuario ya está registrado");
         }
         Cliente cliente = new Cliente(
                 null,
@@ -101,9 +104,9 @@ public class ClienteService{
 
     public LoginResponseDTO login(LoginRequestDTO dto) {
         Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
         if (!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())) {
-            throw new RuntimeException("Contraseña incorrecta");
+            throw new CreadencialesInvalidasException("Contraseña incorrecta");
         }
         String token = jwtService.generarToken(cliente.getId(), cliente.getCorreo(), cliente.getRol().toString());
         return new LoginResponseDTO(token, "Inicio de sesión exitoso");
