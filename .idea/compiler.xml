@@ -16,6 +16,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="usuarios" />
         <module name="demo" />
       </profile>
     </annotationProcessing>
@@ -24,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="GestionClientes" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="usuarios" options="-parameters" />
     </option>
   </component>
 </project>
