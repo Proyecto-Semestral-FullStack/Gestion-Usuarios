@@ -7,11 +7,12 @@ import com.gestionclientes.GestionClientes.dto.LoginResponseDTO;
 import com.gestionclientes.GestionClientes.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -35,14 +36,20 @@ public class ClienteController{
         return clienteService.obtenerPorNombre(nombre).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ClienteResponseDTO> crear(@Valid @RequestBody ClienteRequestDTO dto){
-        return ResponseEntity.status(201).body(clienteService.guardar(dto));
+        return ResponseEntity.status(201).body(clienteService.guardar(dto,null));
     }
 
-    @PutMapping("id/{id}")
-    public ResponseEntity<ClienteResponseDTO> actualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto){
-        return clienteService.actualizar(id,dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    @PostMapping(path = "/{id}/imagen",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ClienteResponseDTO> subirImagen(@PathVariable Long id, @RequestPart("archivo") MultipartFile archivo){
+        return ResponseEntity.status(201).body(clienteService.asignarImagen(id,archivo));
+    }
+
+    @PutMapping(path = "id/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ClienteResponseDTO> actualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto,MultipartFile archivo){
+        ClienteResponseDTO actualizado = clienteService.actualizar(id,dto,null);
+        return ResponseEntity.ok(actualizado);
     }
 
     @DeleteMapping("id/{id}")
