@@ -1,18 +1,17 @@
 package com.gestionclientes.GestionClientes.service;
 
-import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
-import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
-import com.gestionclientes.GestionClientes.dto.LoginRequestDTO;
-import com.gestionclientes.GestionClientes.dto.LoginResponseDTO;
-import com.gestionclientes.GestionClientes.exception.CreadencialesInvalidasException;
+import com.gestionclientes.GestionClientes.dto.*;
+import com.gestionclientes.GestionClientes.exception.CredencialesInvalidasException;
 import com.gestionclientes.GestionClientes.exception.UsuarioNoEncontradoException;
 import com.gestionclientes.GestionClientes.exception.UsuarioYaExisteException;
 import com.gestionclientes.GestionClientes.model.Cliente;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
+import com.gestionclientes.GestionClientes.webclient.StorageClient;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 public class ClienteService{
     private final ClienteRepository clienteRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
+    private final StorageClient storageClient;
     private final JwtService jwtService;
 
     public ClienteResponseDTO mapToDto(Cliente cliente){
@@ -58,24 +57,24 @@ public class ClienteService{
         return clienteRepository.findByCorreo(correo).map(this::mapToDto);
     }
 
-    public Optional<ClienteResponseDTO> actualizar(Long id, ClienteRequestDTO dto) {
-        return clienteRepository.findById(id).map(existe -> {
-            Cliente cliente = clienteRepository
-                    .findById(dto.getId())
-                    .orElseThrow(() -> new RuntimeException(
-                            "Categoría NO encontrada con id: " + dto.getId()));
-            existe.setNombre(dto.getNombre());
-            existe.setApellido(dto.getApellido());
-            existe.setCorreo(dto.getCorreo());
-            existe.setContrasena(passwordEncoder.encode(dto.getContrasena()));
-            existe.setRol(dto.getRol());
-            existe.setActivo(dto.getActivo());
-            existe.setImagenId(dto.getImagenId());
-            return mapToDto(clienteRepository.save(existe));
-        });
+    public ClienteResponseDTO actualizar(Long id, ClienteRequestDTO dto,MultipartFile archivo) {
+        Cliente cliente = clienteRepository.findById(dto.getId())
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
+        cliente.setNombre(dto.getNombre());
+        cliente.setApellido(dto.getApellido());
+        cliente.setCorreo(dto.getCorreo());
+        cliente.setContrasena(passwordEncoder.encode(dto.getContrasena()));
+        cliente.setRol(dto.getRol());
+        cliente.setActivo(dto.getActivo());
+        cliente.setImagenId(dto.getImagenId());
+        if(archivo != null && !archivo.isEmpty()){
+            ArchivoResponseDTO imagen = storageClient.uploadFile(archivo);
+            cliente.setImagenId(imagen.getId());
+        }
+        return mapToDto(clienteRepository.save(cliente));
     }
 
-    public ClienteResponseDTO guardar(ClienteRequestDTO dto){
+    public ClienteResponseDTO guardar(ClienteRequestDTO dto, MultipartFile archivo){
         if(clienteRepository.findByCorreo(dto.getCorreo()).isPresent()){
             throw new UsuarioYaExisteException("El usuario ya está registrado");
         }
@@ -91,6 +90,18 @@ public class ClienteService{
                 null,
                 null
         );
+        if(archivo != null && !archivo.isEmpty()){
+            ArchivoResponseDTO imagen = storageClient.uploadFile(archivo);
+            cliente.setImagenId(imagen.getId());
+        }
+        return mapToDto(clienteRepository.save(cliente));
+    }
+
+    public ClienteResponseDTO asignarImagen(Long id, MultipartFile archivo){
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
+        ArchivoResponseDTO imagen = storageClient.uploadFile(archivo);
+        cliente.setImagenId(imagen.getId());
         return mapToDto(clienteRepository.save(cliente));
     }
 
@@ -106,18 +117,26 @@ public class ClienteService{
         Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo())
                 .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
         if (!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())) {
-            throw new CreadencialesInvalidasException("Contraseña incorrecta");
+            throw new CredencialesInvalidasException("Contraseña incorrecta");
         }
         String token = jwtService.generarToken(cliente.getId(), cliente.getCorreo(), cliente.getRol().toString());
         return new LoginResponseDTO(token, "Inicio de sesión exitoso");
     }
 
     public void eliminarPorId(Long id) {
-        clienteRepository.deleteById(id);
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
+        cliente.setActivo(false);
+        clienteRepository.save(cliente);
+        //clienteRepository.deleteById(id); desactivar usuario o eliminar???
     }
 
     public void eliminarPorCorreo(String correo){
-        clienteRepository.deleteClienteByCorreo(correo);
+        Cliente cliente = clienteRepository.findByCorreo(correo)
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
+        cliente.setActivo(false);
+        clienteRepository.save(cliente);
+        //clienteRepository.deleteClienteByCorreo(correo); desactivar usuario o eliminar???
     }
 
 }
