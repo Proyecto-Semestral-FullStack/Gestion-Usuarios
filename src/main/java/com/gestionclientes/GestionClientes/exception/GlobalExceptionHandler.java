@@ -32,8 +32,8 @@ public class GlobalExceptionHandler{
         return ResponseEntity.status(409).body(error);
     }
 
-    @ExceptionHandler(CreadencialesInvalidasException.class)
-    public ResponseEntity<Map<String,String>> handleCreadencialesInvalidas(CreadencialesInvalidasException ex){
+    @ExceptionHandler(CredencialesInvalidasException.class)
+    public ResponseEntity<Map<String,String>> handleCreadencialesInvalidas(CredencialesInvalidasException ex){
         Map<String, String> error = new LinkedHashMap<>();
         error.put("ERROR", ex.getMessage());
         return ResponseEntity.status(401).body(error);
