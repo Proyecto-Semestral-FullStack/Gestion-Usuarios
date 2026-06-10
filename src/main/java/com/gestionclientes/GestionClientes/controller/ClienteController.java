@@ -41,7 +41,7 @@ public class ClienteController{
         return ResponseEntity.status(201).body(clienteService.guardar(dto,null));
     }
 
-    @PostMapping(path = "/{id}/imagen",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/{id}/imagen",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ClienteResponseDTO> subirImagen(@PathVariable Long id, @RequestPart("archivo") MultipartFile archivo){
         return ResponseEntity.status(201).body(clienteService.asignarImagen(id,archivo));
     }
