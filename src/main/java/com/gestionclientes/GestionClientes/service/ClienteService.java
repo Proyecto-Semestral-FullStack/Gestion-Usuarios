@@ -35,10 +35,7 @@ public class ClienteService{
                 cliente.getApellido(),
                 cliente.getCorreo(),
                 cliente.getRol(),
-                cliente.getActivo(),
-                cliente.getImagenId(),
-                cliente.getFechaCreacion(),
-                cliente.getFechaActualizacion()
+                cliente.getImagenId()
         );
     }
 
@@ -66,7 +63,6 @@ public class ClienteService{
             existe.setCorreo(dto.getCorreo());
             existe.setContrasena(passwordEncoder.encode(dto.getContrasena()));
             existe.setRol(dto.getRol());
-            existe.setActivo(dto.getActivo());
             existe.setImagenId(dto.getImagenId());
             return mapToDto(clienteRepository.save(existe));
         });
@@ -83,10 +79,7 @@ public class ClienteService{
                 dto.getCorreo(),
                 passwordEncoder.encode(dto.getContrasena()),
                 dto.getRol(),
-                dto.getActivo(),
-                dto.getImagenId(),
-                null,
-                null
+                dto.getImagenId()
         );
         return mapToDto(clienteRepository.save(cliente));
     }
