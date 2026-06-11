@@ -16,8 +16,5 @@ public class ClienteResponseDTO {
     private String apellido;
     private String correo;
     private Rol rol;
-    private Boolean activo;
     private Long imagenId;
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaActualizacion;
 }

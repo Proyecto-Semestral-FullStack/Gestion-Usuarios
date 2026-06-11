@@ -31,12 +31,5 @@ public class ClienteRequestDTO {
     @NotNull(message = "El rol no puede estar nulo")
     private Rol rol;
 
-    @NotNull(message = "La actividad no puede estar nula")
-    private Boolean activo;
-
     private Long imagenId;
-
-    private LocalDateTime fechaCreacion;
-
-    private LocalDateTime fechaActualizacion;
 }
