@@ -4,10 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "usuarios")
@@ -35,17 +31,6 @@ public class Cliente{
     @Column(nullable = false)
     private Rol rol;
 
-    @Column(nullable = false)
-    private Boolean activo;
-
     @Column
     private Long imagenId;
-
-    @CreationTimestamp
-    @Column(updatable = false)
-    private LocalDateTime fechaCreacion;
-
-    @UpdateTimestamp
-    @Column
-    private LocalDateTime fechaActualizacion;
 }
