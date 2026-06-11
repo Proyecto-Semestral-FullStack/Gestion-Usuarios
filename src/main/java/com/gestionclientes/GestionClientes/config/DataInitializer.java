@@ -9,8 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -24,10 +22,10 @@ public class DataInitializer implements CommandLineRunner{
             log.info("DataInitializer: La BD ya tiene datos , se omite la carga inicial.");
             return;
         }
-        LocalDateTime ahora = LocalDateTime.now();
         log.info(">>>DataInitializer: BD vacía detectada, insertando datos de prueba...");
-        clienteRepository.save(new Cliente(null,"Javier","Rodriguez","javiR@gmail.com",passwordEncoder.encode("Jav2000"), Rol.ADMIN,true,null,ahora,ahora));
-        clienteRepository.save(new Cliente(null,"Sopaipilla69",null,"sop69@gmail.com",passwordEncoder.encode("S6opaipill9a"),Rol.USUARIO,true,null,ahora,ahora));
+        clienteRepository.save(new Cliente(null,"Javier","Rodriguez","javiR@gmail.com",passwordEncoder.encode("Jav2000"), Rol.ADMIN,null));
+        clienteRepository.save(new Cliente(null,"Sopaipilla69",null,"sop69@gmail.com",passwordEncoder.encode("S6opaipill9a"),Rol.COMPRADOR,null));
+        clienteRepository.save(new Cliente(null,"Jose Maria",null,"josM@gmail.com",passwordEncoder.encode("J0s3M4r1A"),Rol.VENDEDOR,null));
         log.info(">>> DataInitializer: usuarios insertados correctamente",clienteRepository.count());
     }
 }
