@@ -2,8 +2,6 @@ package com.gestionclientes.GestionClientes.controller;
 
 import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
 import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
-import com.gestionclientes.GestionClientes.dto.LoginRequestDTO;
-import com.gestionclientes.GestionClientes.dto.LoginResponseDTO;
 import com.gestionclientes.GestionClientes.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -61,10 +58,5 @@ public class ClienteController{
         }
         clienteService.eliminarPorCorreo(correo);
         return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO dto){
-        return ResponseEntity.ok(clienteService.login(dto));
     }
 }
