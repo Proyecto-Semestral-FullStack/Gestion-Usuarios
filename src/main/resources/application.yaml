@@ -8,11 +8,12 @@ spring:
 
   # ========== BASE DE DATOS ==========
   datasource:
-    url: jdbc:oracle:thin:@xxxxx_high?TNS_ADMIN=C:/{user.dir}/src/main/resources/{nombre_wallet} #aca colocar la direccion de la wallet de la base de datos dejarlo en la carpeta resources de este microservicio
+    url: jdbc:oracle:thin:@frikitienda_high?TNS_ADMIN=C:/Users/visio/Downloads/Wallet_FrikiTienda #<-- Cambiar esta ruta por la ruta donde se encuentra la Wallet que se descargo
+    #YAML reconoce mejor el uso de "/" que el uso de "\" para las rutas en Windows
     username: ADMIN
-    password: Rodriguez123.
+    password: Contrasena123
     driver-class-name: oracle.jdbc.OracleDriver
-  
+  # ========== JPA ==========
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
@@ -33,9 +34,4 @@ springdoc:
     enabled: true
   swagger-ui:
     enabled: true
-    path: /swagger-ui.html
-# ========== SEGURIDAD JWT (opcional, si ya lo tienes implementado) ==========
-# se puede generar asi una clave aleatoria openssl rand -base64 32 --esta clave JWT SECRET ,no se sube a github es personal
-jwt:
-  secret: dGhpcyBpcyBhIHZlcnkgbG9uZyBhbmQgc2VjdXJlIHNlY3JldCBrZXkgZm9yIGp3dA==
-  expiration: 86400000
+    path: /swagger-ui.html #<-- localhost:8081/swagger-ui.html para acceder a la documentación de la API
