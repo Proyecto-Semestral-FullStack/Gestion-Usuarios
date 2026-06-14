@@ -26,8 +26,6 @@ public class ClienteService{
     private final ClienteRepository clienteRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    private final JwtService jwtService;
-
     public ClienteResponseDTO mapToDto(Cliente cliente){
         return new ClienteResponseDTO(
                 cliente.getId(),
@@ -57,14 +55,16 @@ public class ClienteService{
 
     public Optional<ClienteResponseDTO> actualizar(Long id, ClienteRequestDTO dto) {
         return clienteRepository.findById(id).map(existe -> {
-
             existe.setNombre(dto.getNombre());
             existe.setApellido(dto.getApellido());
             existe.setCorreo(dto.getCorreo());
-            existe.setContrasena(passwordEncoder.encode(dto.getContrasena()));
             existe.setRol(dto.getRol());
             existe.setImagenId(dto.getImagenId());
-            return mapToDto(clienteRepository.save(existe));
+
+            if (dto.getContrasena() != null && !dto.getContrasena().isBlank()) {
+                existe.setContrasena(passwordEncoder.encode(dto.getContrasena()));
+            }
+            return mapToDto(existe);
         });
     }
 
@@ -82,16 +82,6 @@ public class ClienteService{
                 dto.getImagenId()
         );
         return mapToDto(clienteRepository.save(cliente));
-    }
-
-    public LoginResponseDTO login(LoginRequestDTO dto) {
-        Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo())
-                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
-        if (!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())) {
-            throw new CreadencialesInvalidasException("Contraseña incorrecta");
-        }
-        String token = jwtService.generarToken(cliente.getId(), cliente.getCorreo(), cliente.getRol().toString());
-        return new LoginResponseDTO(token, "Inicio de sesión exitoso");
     }
 
     public void eliminarPorId(Long id) {
