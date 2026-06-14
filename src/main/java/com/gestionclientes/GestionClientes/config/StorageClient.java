@@ -1,4 +1,4 @@
-package com.gestionclientes.GestionClientes.webclient;
+package com.gestionclientes.GestionClientes.config;
 
 import com.gestionclientes.GestionClientes.dto.ArchivoResponseDTO;
 import com.gestionclientes.GestionClientes.exception.StorageException;
