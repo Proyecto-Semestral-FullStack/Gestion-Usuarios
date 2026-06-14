@@ -1,0 +1,5 @@
+# ==========  el entorno de produccion-
+#Cuando ya TODO ha funcionado bien en el entorno local.
+#Aca es para preparar el entorno para subirlo
+#Las credenciales de producción se inyectan mediante variables de entorno ========
+
