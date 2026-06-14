@@ -2,8 +2,6 @@ package com.gestionclientes.GestionClientes.service;
 
 import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
 import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
-import com.gestionclientes.GestionClientes.dto.LoginRequestDTO;
-import com.gestionclientes.GestionClientes.dto.LoginResponseDTO;
 import com.gestionclientes.GestionClientes.exception.CreadencialesInvalidasException;
 import com.gestionclientes.GestionClientes.exception.UsuarioNoEncontradoException;
 import com.gestionclientes.GestionClientes.exception.UsuarioYaExisteException;
@@ -25,8 +23,6 @@ import java.util.stream.Collectors;
 public class ClienteService{
     private final ClienteRepository clienteRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
-    private final JwtService jwtService;
 
     public ClienteResponseDTO mapToDto(Cliente cliente){
         return new ClienteResponseDTO(
@@ -84,15 +80,6 @@ public class ClienteService{
         return mapToDto(clienteRepository.save(cliente));
     }
 
-    public LoginResponseDTO login(LoginRequestDTO dto) {
-        Cliente cliente = clienteRepository.findByCorreo(dto.getCorreo())
-                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario no encontrado"));
-        if (!passwordEncoder.matches(dto.getContrasena(), cliente.getContrasena())) {
-            throw new CreadencialesInvalidasException("Contraseña incorrecta");
-        }
-        String token = jwtService.generarToken(cliente.getId(), cliente.getCorreo(), cliente.getRol().toString());
-        return new LoginResponseDTO(token, "Inicio de sesión exitoso");
-    }
 
     public void eliminarPorId(Long id) {
         clienteRepository.deleteById(id);
