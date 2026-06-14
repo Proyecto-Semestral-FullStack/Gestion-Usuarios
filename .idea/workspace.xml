@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c785efd7-72dc-48f0-a320-1b2040d2215e" name="Changes" comment="Se han removido atributos inecesarios y redundantes en los dtos">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/client/StorageClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+    <list default="true" id="c785efd7-72dc-48f0-a320-1b2040d2215e" name="Changes" comment="Se refactorizo el metodo actualizar dando una validacion si la contraseña ingresada es nula, ademas de la eliminacion del metodo login del Service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/GestionClientesApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/GestionClientesApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/DataInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/SecurityFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/model/Rol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/model/Rol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/JwtFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/SecurityFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/config/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/exception/StorageException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/JwtService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/webclient/StorageClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +23,7 @@
   <component name="CopilotChats">
     <option name="panelChat">
       <chat>
-        <option name="activeSessionId" value="af00cd90-b00b-4dc0-ab02-43cf103f7e21" />
+        <option name="activeSessionId" value="0fe829a4-cc50-46f0-b8b0-9cc6f24766d6" />
         <option name="sessions">
           <session>
             <option name="chatType" value="PANEL" />
@@ -44,6 +41,14 @@
             <option name="modelValue" value="auto" />
             <option name="targetType" value="LOCAL" />
           </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="0fe829a4-cc50-46f0-b8b0-9cc6f24766d6" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
         </option>
         <option name="type" value="PANEL" />
       </chat>
@@ -53,10 +58,11 @@
     <persistenceIdMap>
       <entry key="_C:/Users/VI-Alumno/Desktop/Proyecto/copia/Gestion-Usuarios" value="3EzifiBKTB5I2PgZciHnsgMF3S8" />
       <entry key="_C:/Users/visio/OneDrive/Escritorio/Uni/Año 2 Semestre 1/Desarrollo FullStack I/Gestion-Usuarios" value="3DGWZMnKDe8UbJTOZlnjhpEFZeh" />
+      <entry key="_C:/Users/visio/OneDrive/Escritorio/Uni/Año 2 Semestre 1/Desarrollo FullStack I/clon github/Gestion-Usuarios" value="3F6UBBsqKoXOZn8IPYH8dFvauav" />
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="31" />
+    <option name="cachedIndexableFilesCount" value="41" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -110,11 +116,12 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.GestionClientesApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "alternativa",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/VI-Alumno/Desktop/Proyecto/copia/Gestion-Usuarios/src/test/java",
-    "last_opened_file_path": "C:/Users/VI-Alumno/Desktop/Proyecto/copia/Gestion-Usuarios",
+    "last_opened_file_path": "C:/Users/visio/OneDrive/Escritorio/Uni/Año 2 Semestre 1/Desarrollo FullStack I/clon github/Gestion-Usuarios",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -260,7 +267,39 @@
       <option name="project" value="LOCAL" />
       <updated>1781192708241</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Se cambio el formato del archivo application (.properties -&gt; .yml)">
+      <option name="closed" value="true" />
+      <created>1781397382386</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1781397382386</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Se refactorizo la clase SecurityConfig ya que spring security no se usa en este microservicio">
+      <option name="closed" value="true" />
+      <created>1781397519024</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1781397519024</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Se elimino el metodo login del Controller">
+      <option name="closed" value="true" />
+      <created>1781397798874</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1781397798874</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Se refactorizo el metodo actualizar dando una validacion si la contraseña ingresada es nula, ademas de la eliminacion del metodo login del Service">
+      <option name="closed" value="true" />
+      <created>1781397931005</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1781397931005</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +329,11 @@
     <MESSAGE value="Se ha creado la clase de WebClientConfig para hacer las llamadas al microservicio de Storage" />
     <MESSAGE value="Se han removido atributos inecesarios y redundantes en el modelo" />
     <MESSAGE value="Se han removido atributos inecesarios y redundantes en los dtos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se han removido atributos inecesarios y redundantes en los dtos" />
+    <MESSAGE value="Se cambio el formato del archivo application (.properties -&gt; .yml)" />
+    <MESSAGE value="Se refactorizo la clase SecurityConfig ya que spring security no se usa en este microservicio" />
+    <MESSAGE value="Se elimino el metodo login del Controller" />
+    <MESSAGE value="Se refactorizo el metodo actualizar dando una validacion si la contraseña ingresada es nula, ademas de la eliminacion del metodo login del Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se refactorizo el metodo actualizar dando una validacion si la contraseña ingresada es nula, ademas de la eliminacion del metodo login del Service" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
