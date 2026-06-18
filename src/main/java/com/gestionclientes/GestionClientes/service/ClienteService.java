@@ -2,8 +2,6 @@ package com.gestionclientes.GestionClientes.service;
 
 import com.gestionclientes.GestionClientes.dto.ClienteRequestDTO;
 import com.gestionclientes.GestionClientes.dto.ClienteResponseDTO;
-import com.gestionclientes.GestionClientes.exception.CreadencialesInvalidasException;
-import com.gestionclientes.GestionClientes.exception.UsuarioNoEncontradoException;
 import com.gestionclientes.GestionClientes.exception.UsuarioYaExisteException;
 import com.gestionclientes.GestionClientes.model.Cliente;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
