@@ -7,7 +7,7 @@ import com.gestionclientes.GestionClientes.model.Cliente;
 import com.gestionclientes.GestionClientes.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ClienteService{
     private final ClienteRepository clienteRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public ClienteResponseDTO mapToDto(Cliente cliente){
         return new ClienteResponseDTO(
@@ -77,7 +77,6 @@ public class ClienteService{
         );
         return mapToDto(clienteRepository.save(cliente));
     }
-
 
     public void eliminarPorId(Long id) {
         clienteRepository.deleteById(id);
