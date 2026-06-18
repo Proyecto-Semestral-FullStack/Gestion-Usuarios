@@ -8,9 +8,6 @@ import org.springframework.cloud.openfeign.support.SpringEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Base64;
-
-
 @Configuration
 public class FeignMultipartConfig {
     private final ObjectFactory<HttpMessageConverters> messageConverters;
@@ -20,7 +17,7 @@ public class FeignMultipartConfig {
     }
 
     @Bean
-    public Base64.Encoder feignFormEncoder() {
+    public Encoder feignFormEncoder() {
         return new SpringFormEncoder(new SpringEncoder(messageConverters));
     }
 
