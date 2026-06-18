@@ -20,7 +20,7 @@ public class FeignMultipartConfig {
     }
 
     @Bean
-    public Base64.Encoder feignFormEncoder() {
+    public Encoder feignFormEncoder() {
         return new SpringFormEncoder(new SpringEncoder(messageConverters));
     }
 
