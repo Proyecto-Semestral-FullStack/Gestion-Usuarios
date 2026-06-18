@@ -18,24 +18,10 @@ public class GlobalExceptionHandler{
         return ResponseEntity.badRequest().body(errores);
     }
 
-    @ExceptionHandler(UsuarioNoEncontradoException.class)
-    public ResponseEntity<Map<String,String>> handleUsuarioNoEncontrado(UsuarioNoEncontradoException ex){
-        Map<String, String> error = new LinkedHashMap<>();
-        error.put("ERROR", ex.getMessage());
-        return ResponseEntity.status(404).body(error);
-    }
-
     @ExceptionHandler(UsuarioYaExisteException.class)
     public ResponseEntity<Map<String,String>> handleUsuarioYaExiste(UsuarioYaExisteException ex){
         Map<String, String> error = new LinkedHashMap<>();
         error.put("ERROR", ex.getMessage());
         return ResponseEntity.status(409).body(error);
-    }
-
-    @ExceptionHandler(CreadencialesInvalidasException.class)
-    public ResponseEntity<Map<String,String>> handleCreadencialesInvalidas(CreadencialesInvalidasException ex){
-        Map<String, String> error = new LinkedHashMap<>();
-        error.put("ERROR", ex.getMessage());
-        return ResponseEntity.status(401).body(error);
     }
 }
