@@ -47,6 +47,22 @@ public class ClienteService{
         return clienteRepository.findByNombreContainingIgnoreCase(nombre).map(this::mapToDto);
     }
 
+    /**
+     * Retorna la entidad Cliente completa (con contraseña hasheada) para uso interno.
+     *
+     * Este metodo existe exclusivamente para soportar la autenticacion desde ms-auth.
+     * A diferencia de obtenerPorCorreo() que retorna un ClienteResponseDTO sin contraseña,
+     * este metodo retorna la entidad directa del repositorio para que el controlador
+     * pueda construir un UsuarioAuthDTO con la contraseña incluida.
+     *
+     * IMPORTANTE: No usar este metodo en endpoints publicos ni exponer
+     * su resultado fuera del endpoint /interno/auth/{correo}.
+     */
+
+    public Optional<Cliente> obtenerEntidadPorCorreo(String correo) {
+        return clienteRepository.findByCorreo(correo);
+    }
+
     public Optional<ClienteResponseDTO> obtenerPorCorreo(String correo){
         return clienteRepository.findByCorreo(correo).map(this::mapToDto);
     }
