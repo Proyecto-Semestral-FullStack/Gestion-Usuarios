@@ -5,7 +5,7 @@ spring:
   application:
     name: ms-usuarios
   profiles:
-    active: local       # al arrancar sin argumentos, usa application-local.yml  - test ,prod
+    active: local       # al arrancar sin argumentos, usa application-local.yml  -prod
 
 eureka:
   client:
