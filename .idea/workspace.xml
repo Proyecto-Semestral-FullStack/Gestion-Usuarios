@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c785efd7-72dc-48f0-a320-1b2040d2215e" name="Changes" comment="Se han removido atributos inecesarios y redundantes en los dtos">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/repository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/repository/ClienteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionclientes/GestionClientes/service/ClienteService.java" afterDir="false" />
-    </list>
+    <list default="true" id="c785efd7-72dc-48f0-a320-1b2040d2215e" name="Changes" comment="Dependencia de OpenFeign agregada para la conexion con el ms de Storage" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +52,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="37" />
+    <option name="cachedIndexableFilesCount" value="39" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -105,14 +100,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.GestionClientesApplication.executor": "Run",
+    "JUnit.ClienteServiceTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.GestionClientesApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Correccion__com__ms",
+    "git-widget-placeholder": "test/ms-usuarios",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/VI-Alumno/Desktop/Proyecto/copia/Gestion-Usuarios/src/test/java",
@@ -122,7 +119,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -130,12 +127,32 @@
   }
 }]]></component>
   <component name="RunManager">
+    <configuration name="ClienteServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="usuarios" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gestionclientes.GestionClientes.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gestionclientes.GestionClientes.service" />
+      <option name="MAIN_CLASS_NAME" value="com.gestionclientes.GestionClientes.service.ClienteServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GestionUsuarios" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ClienteServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -262,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781192708241</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Dependencia de OpenFeign agregada para la conexion con el ms de Storage">
+      <option name="closed" value="true" />
+      <created>1781839837221</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1781839837221</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +317,8 @@
     <MESSAGE value="Se ha creado la clase de WebClientConfig para hacer las llamadas al microservicio de Storage" />
     <MESSAGE value="Se han removido atributos inecesarios y redundantes en el modelo" />
     <MESSAGE value="Se han removido atributos inecesarios y redundantes en los dtos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se han removido atributos inecesarios y redundantes en los dtos" />
+    <MESSAGE value="Dependencia de OpenFeign agregada para la conexion con el ms de Storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dependencia de OpenFeign agregada para la conexion con el ms de Storage" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
