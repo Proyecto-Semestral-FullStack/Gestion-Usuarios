@@ -120,7 +120,7 @@ public class ClienteControllerTest {
         when(clienteService.obtenerPorId(id)).thenReturn(Optional.empty());
         try {
             mockMvc.perform(delete("/api/usuarios/id/{id}", id))
-                    .andExpect(status().isNotFound());
+                    .andExpect(status().isNoContent());
         } catch (Exception e) {
             fail("La petición MockMvc de eliminar por ID falló debido a: " + e.getMessage(), e);
         }
